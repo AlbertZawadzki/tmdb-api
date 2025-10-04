@@ -1,0 +1,13 @@
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+    public: false
+
+  TmdbApi\:
+    resource: '../../src/'
+
+  TmdbApi\Client\TmdbClient:
+    class: 'TmdbApi\Client\TmdbClient'
+    arguments:
+      $apiKey: '%env(THEMOVIEDB_API_KEY)%'

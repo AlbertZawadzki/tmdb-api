@@ -1,0 +1,24 @@
+<?php
+
+namespace TmdbApi\Dto;
+
+use DateTimeImmutable;
+
+class MovieDto
+{
+    public function __construct(
+        public readonly string             $id,
+        public readonly string             $title,
+        public readonly string             $originalTitle,
+        public readonly string             $shortDescription,
+        public readonly ?string            $posterPath,
+        public readonly ?string            $backdropPath,
+        public readonly int                $votesCount,
+        public readonly int                $votesSum,
+        public readonly bool               $isAdult,
+        public readonly ?DateTimeImmutable $premiereAt,
+        public readonly CollectionDto      $genres,
+    )
+    {
+    }
+}

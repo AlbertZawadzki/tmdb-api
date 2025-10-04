@@ -1,0 +1,24 @@
+{
+  "name": "azaw/tmdb-api",
+  "description": "TMDB API by AZ",
+  "type": "library",
+  "license": "MIT",
+  "autoload": {
+    "psr-4": {
+      "TmdbApi\\": "src/"
+    }
+  },
+  "require": {
+    "php": ">=8.4",
+    "symfony/framework-bundle": "^5.4 || ^6.0 || ^7.0",
+    "symfony/http-client-contracts": "^3.0"
+  },
+  "require-dev": {
+    "symfony/var-dumper": "^5.4 || ^6.0 || ^7.0"
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "extra": {
+    "public-dir": "Resources/public"
+  }
+}
