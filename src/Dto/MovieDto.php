@@ -18,6 +18,7 @@ class MovieDto
         public readonly ?string            $backdropPath,
         public readonly int                $votesCount,
         public readonly int                $votesSum,
+        public readonly ?int               $runtime,
         public readonly bool               $isAdult,
         public readonly ?DateTimeImmutable $premiereAt,
         public readonly CollectionDto      $genres,

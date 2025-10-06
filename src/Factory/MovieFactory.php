@@ -2,10 +2,10 @@
 
 namespace TmdbApi\Factory;
 
+use DateTimeImmutable;
 use TmdbApi\Dto\CollectionDto;
 use TmdbApi\Dto\GenreDto;
 use TmdbApi\Dto\MovieDto;
-use DateTimeImmutable;
 
 class MovieFactory
 {
@@ -25,6 +25,10 @@ class MovieFactory
         $votesCount = $data['vote_count'];
         $averageVote = $data['vote_average'];
         $votesSum = (int)($votesCount * $averageVote);
+        $runtime = (int)$data['runtime'] ?? 0;
+        if ($runtime === 0) {
+            $runtime = null;
+        }
         $premiereAt = null;
         if ($data['release_date']) {
             $premiereAt = new DateTimeImmutable($data['release_date']);
@@ -41,6 +45,7 @@ class MovieFactory
             $backdropPath,
             $votesCount,
             $votesSum,
+            $runtime,
             $data['adult'],
             $premiereAt,
             $genres,
