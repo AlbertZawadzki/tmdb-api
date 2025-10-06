@@ -2,18 +2,33 @@
 
 namespace TmdbApi\Dto;
 
+use ArrayIterator;
+use IteratorAggregate;
 use RuntimeException;
+use Traversable;
 
-class CollectionDto
+/**
+ * @template T of object
+ * @implements IteratorAggregate<int, T>
+ */
+class CollectionDto implements IteratorAggregate
 {
+    /** @var array<int, T> */
     private array $items = [];
 
+    /**
+     * @param class-string<T> $itemClass
+     */
     public function __construct(
         private readonly string $itemClass,
     )
     {
     }
 
+    /**
+     * @param T $item
+     * @return $this
+     */
     public function add(mixed $item): static
     {
         if (!$item instanceof $this->itemClass) {
@@ -30,8 +45,11 @@ class CollectionDto
         return count($this->items);
     }
 
-    private function getAll(): array
+    /**
+     * @return Traversable<int, T>
+     */
+    public function getIterator(): Traversable
     {
-        return $this->items;
+        return new ArrayIterator($this->items);
     }
 }
