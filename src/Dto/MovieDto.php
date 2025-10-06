@@ -6,6 +6,9 @@ use DateTimeImmutable;
 
 class MovieDto
 {
+    /**
+     * @param CollectionDto<GenreDto> $genres
+     */
     public function __construct(
         public readonly string             $id,
         public readonly string             $title,
