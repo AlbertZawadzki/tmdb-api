@@ -5,8 +5,8 @@ namespace TmdbApi\Dto;
 class GenreDto
 {
     public function __construct(
-        private readonly string  $id,
-        private readonly ?string $name = null,
+        public readonly string  $id,
+        public readonly ?string $name = null,
     )
     {
     }
