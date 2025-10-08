@@ -25,7 +25,7 @@ class MovieFactory
         $votesCount = $data['vote_count'];
         $averageVote = $data['vote_average'];
         $votesSum = (int)($votesCount * $averageVote);
-        $runtime = (int)$data['runtime'] ?? 0;
+        $runtime = (int)($data['runtime'] ?? 0);
         if ($runtime === 0) {
             $runtime = null;
         }
