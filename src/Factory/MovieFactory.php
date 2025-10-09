@@ -3,7 +3,7 @@
 namespace TmdbApi\Factory;
 
 use DateTimeImmutable;
-use TmdbApi\Dto\CollectionDto;
+use Generic\GenericCollection;
 use TmdbApi\Dto\GenreDto;
 use TmdbApi\Dto\MovieDto;
 
@@ -52,9 +52,9 @@ class MovieFactory
         );
     }
 
-    private function getGenres(array $data): CollectionDto
+    private function getGenres(array $data): GenericCollection
     {
-        $genres = new CollectionDto(GenreDto::class);
+        $genres = new GenericCollection(GenreDto::class);
         foreach ($data['genre_ids'] ?? [] as $genreId) {
             $genres->add($this->genreFactory->createFromId($genreId));
         }

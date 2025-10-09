@@ -3,11 +3,12 @@
 namespace TmdbApi\Dto;
 
 use DateTimeImmutable;
+use Generic\GenericCollection;
 
 class MovieDto
 {
     /**
-     * @param CollectionDto<GenreDto> $genres
+     * @param GenericCollection<GenreDto> $genres
      */
     public function __construct(
         public readonly string             $id,
@@ -21,7 +22,7 @@ class MovieDto
         public readonly ?int               $runtime,
         public readonly bool               $isAdult,
         public readonly ?DateTimeImmutable $premiereAt,
-        public readonly CollectionDto      $genres,
+        public readonly GenericCollection  $genres,
     )
     {
     }
