@@ -11,6 +11,7 @@ class MovieFactory
 {
     public function __construct(
         private readonly GenreFactory $genreFactory,
+        private readonly ImageFactory $imageFactory,
     )
     {
     }
@@ -20,8 +21,8 @@ class MovieFactory
         $title = trim($data['title']);
         $originalTitle = trim($data['original_title']);
         $shortDescription = trim($data['overview']);
-        $posterPath = $this->getImagePath($data['poster_path'] ?? null);
-        $backdropPath = $this->getImagePath($data['backdrop_path'] ?? null);
+        $posterPath = $this->imageFactory->createFromPath($data['poster_path'] ?? null);
+        $backdropPath = $this->imageFactory->createFromPath($data['backdrop_path'] ?? null);
         $votesCount = $data['vote_count'];
         $averageVote = $data['vote_average'];
         $votesSum = (int)($votesCount * $averageVote);
@@ -63,14 +64,5 @@ class MovieFactory
         }
 
         return $genres;
-    }
-
-    private function getImagePath(?string $path): ?string
-    {
-        if ($path) {
-            return "https://image.tmdb.org/t/p/original{$path}";
-        }
-
-        return null;
     }
 }
