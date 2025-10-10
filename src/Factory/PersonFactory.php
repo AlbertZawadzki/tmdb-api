@@ -14,14 +14,6 @@ class PersonFactory
     {
     }
 
-    public function createFromId(string $id): PersonDto
-    {
-        return new PersonDto(
-            $id,
-            new ImageDto(),
-        );
-    }
-
     public function createFromData(array $data): PersonDto
     {
         $image = $this->imageFactory->createFromPath($data['profile_path'] ?? null);
