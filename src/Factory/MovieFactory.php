@@ -79,7 +79,7 @@ class MovieFactory
     private function getCast(array $data): GenericCollection
     {
         $cast = new GenericCollection(CastDto::class);
-        foreach ($data['genre_ids'] ?? [] as $genreId) {
+        foreach ($data['credits']['cast'] ?? [] as $genreId) {
             $cast->add($this->castFactory->createFromData($genreId));
         }
 
