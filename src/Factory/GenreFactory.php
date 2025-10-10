@@ -6,7 +6,7 @@ use TmdbApi\Dto\GenreDto;
 
 class GenreFactory
 {
-    public function createFromId(int $id): GenreDto
+    public function createFromId(string $id): GenreDto
     {
         return new GenreDto($id);
     }
