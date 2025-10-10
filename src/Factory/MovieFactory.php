@@ -7,6 +7,7 @@ use Generic\GenericCollection;
 use TmdbApi\Dto\CastDto;
 use TmdbApi\Dto\CrewDto;
 use TmdbApi\Dto\GenreDto;
+use TmdbApi\Dto\ImageDto;
 use TmdbApi\Dto\MovieDto;
 
 class MovieFactory
@@ -43,6 +44,7 @@ class MovieFactory
         $genres = $this->getGenres($data);
         $cast = $this->getCast($data);
         $crew = $this->getCrew($data);
+        $logos = $this->getLogos($data);
 
         return new MovieDto(
             $data['id'],
@@ -60,6 +62,7 @@ class MovieFactory
             $imdbId,
             $cast,
             $crew,
+            $logos,
         );
     }
 
@@ -79,8 +82,8 @@ class MovieFactory
     private function getCast(array $data): GenericCollection
     {
         $cast = new GenericCollection(CastDto::class);
-        foreach ($data['credits']['cast'] ?? [] as $genreId) {
-            $cast->add($this->castFactory->createFromData($genreId));
+        foreach ($data['credits']['cast'] ?? [] as $castData) {
+            $cast->add($this->castFactory->createFromData($castData));
         }
 
         return $cast;
@@ -89,10 +92,20 @@ class MovieFactory
     private function getCrew(array $data): GenericCollection
     {
         $crew = new GenericCollection(CrewDto::class);
-        foreach ($data['credits']['crew'] ?? [] as $genreId) {
-            $crew->add($this->crewFactory->createFromData($genreId));
+        foreach ($data['credits']['crew'] ?? [] as $crewData) {
+            $crew->add($this->crewFactory->createFromData($crewData));
         }
 
         return $crew;
+    }
+
+    private function getLogos(array $data): GenericCollection
+    {
+        $logos = new GenericCollection(ImageDto::class);
+        foreach ($data['images']['logos'] ?? [] as $logoData) {
+            $logos->add($this->imageFactory->createFromData($logoData));
+        }
+
+        return $logos;
     }
 }

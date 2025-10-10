@@ -28,6 +28,7 @@ class MovieDto
         public readonly ?string            $imdbId = null,
         public readonly GenericCollection  $cast = new GenericCollection(CastDto::class),
         public readonly GenericCollection  $crew = new GenericCollection(CrewDto::class),
+        public readonly GenericCollection  $logos = new GenericCollection(ImageDto::class),
     )
     {
     }

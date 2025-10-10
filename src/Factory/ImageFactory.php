@@ -18,4 +18,20 @@ class ImageFactory
             $url,
         );
     }
+
+    public function createFromData(array $data): ImageDto
+    {
+        $path = $data['file_path'] ?? null;
+        $url = null;
+        if ($path) {
+            $url = "https://image.tmdb.org/t/p/original{$path}";
+        }
+
+        return new ImageDto(
+            $path,
+            $url,
+            $data['width'] ?? null,
+            $data['height'] ?? null,
+        );
+    }
 }
