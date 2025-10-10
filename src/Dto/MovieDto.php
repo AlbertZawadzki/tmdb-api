@@ -9,20 +9,25 @@ class MovieDto
 {
     /**
      * @param GenericCollection<GenreDto> $genres
+     * @param GenericCollection<CastDto> $cast
+     * @param GenericCollection<CrewDto> $crew
      */
     public function __construct(
         public readonly string             $id,
         public readonly string             $title,
         public readonly string             $originalTitle,
-        public readonly string             $shortDescription,
+        public readonly string             $overview,
         public readonly ImageDto           $posterImage,
         public readonly ImageDto           $backdropImage,
         public readonly int                $votesCount,
         public readonly int                $votesSum,
-        public readonly ?int               $runtime,
         public readonly bool               $isAdult,
-        public readonly ?DateTimeImmutable $premiereAt,
+        public readonly ?DateTimeImmutable $releaseAt,
         public readonly GenericCollection  $genres,
+        public readonly ?int               $runtime = null,
+        public readonly ?string            $imdbId = null,
+        public readonly GenericCollection  $cast = new GenericCollection(CastDto::class),
+        public readonly GenericCollection  $crew = new GenericCollection(CrewDto::class),
     )
     {
     }
