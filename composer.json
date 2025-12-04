@@ -10,12 +10,12 @@
   },
   "require": {
     "php": ">=8.4",
-    "symfony/framework-bundle": "^5.4 || ^6.0 || ^7.0",
+    "symfony/framework-bundle": "^5.4 || ^6.0 || ^7.0 || ^8.0",
     "symfony/http-client-contracts": "^3.0",
     "azaw/generic": "^1.0"
   },
   "require-dev": {
-    "symfony/var-dumper": "^5.4 || ^6.0 || ^7.0"
+    "symfony/var-dumper": "^5.4 || ^6.0 || ^7.0 || ^8.0"
   },
   "minimum-stability": "dev",
   "prefer-stable": true,
