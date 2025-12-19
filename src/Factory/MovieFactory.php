@@ -9,6 +9,7 @@ use TmdbApi\Dto\CrewDto;
 use TmdbApi\Dto\GenreDto;
 use TmdbApi\Dto\ImageDto;
 use TmdbApi\Dto\MovieDto;
+use TmdbApi\Dto\VideoDto;
 
 class MovieFactory
 {
@@ -17,6 +18,7 @@ class MovieFactory
         private readonly ImageFactory $imageFactory,
         private readonly CastFactory  $castFactory,
         private readonly CrewFactory  $crewFactory,
+        private readonly VideoFactory $videoFactory,
     )
     {
     }
@@ -45,6 +47,7 @@ class MovieFactory
         $cast = $this->getCast($data);
         $crew = $this->getCrew($data);
         $logos = $this->getLogos($data);
+        $videos = $this->getVideos($data);
 
         return new MovieDto(
             $data['id'],
@@ -63,6 +66,7 @@ class MovieFactory
             $cast,
             $crew,
             $logos,
+            $videos,
         );
     }
 
@@ -107,5 +111,15 @@ class MovieFactory
         }
 
         return $logos;
+    }
+
+    private function getVideos(array $data): GenericCollection
+    {
+        $videos = new GenericCollection(VideoDto::class);
+        foreach ($data['videos']['results'] ?? [] as $videoData) {
+            $videos->add($this->videoFactory->createFromData($videoData));
+        }
+
+        return $videos;
     }
 }

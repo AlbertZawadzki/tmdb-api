@@ -2,8 +2,6 @@
 
 namespace TmdbApi\Dto;
 
-use TmdbApi\Enum\Gender;
-
 class CastDto
 {
     public function __construct(
