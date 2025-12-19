@@ -10,7 +10,7 @@ class VideoDto
     public function __construct(
         public readonly VideoType   $type,
         public readonly VideoSource $source,
-        public readonly string      $videoId,
+        public readonly string      $sourceId,
         public readonly string      $name,
         public readonly bool        $isOfficial,
     )

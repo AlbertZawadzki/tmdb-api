@@ -13,7 +13,7 @@ class VideoFactory
         return new VideoDto(
             VideoType::tryFromTmdbType($data['type']),
             VideoSource::tryFromTmdbType($data['site']),
-            $data['id'],
+            $data['key'],
             $data['name'],
             $data['official'],
         );
