@@ -26,9 +26,10 @@ class MovieFactory
     public function createFromData(array $data): MovieDto
     {
         $imdbId = $data['imdb_id'] ?? null;
-        $title = trim($data['title']);
-        $originalTitle = trim($data['original_title']);
-        $overview = trim($data['overview']);
+        $title = trim($data['title']) ?: null;
+        $originalTitle = trim($data['original_title']) ?: null;
+        $overview = trim($data['overview']) ?: null;
+        $tagline = trim($data['tagline']) ?: null;
         $posterPath = $this->imageFactory->createFromPath($data['poster_path'] ?? null);
         $backdropPath = $this->imageFactory->createFromPath($data['backdrop_path'] ?? null);
         $votesCount = $data['vote_count'];
@@ -54,6 +55,7 @@ class MovieFactory
             $title,
             $originalTitle,
             $overview,
+            $tagline,
             $posterPath,
             $backdropPath,
             $votesCount,
