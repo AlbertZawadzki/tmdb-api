@@ -14,22 +14,26 @@ class TmdbClient
         private readonly HttpClientInterface $client,
     )
     {
+        $this->clear();
     }
 
     private function clear(): void
     {
-        $this->params = [];
+        $this->params = [
+            'language' => 'en-US',
+        ];
     }
 
     public function addParam(string $name, string $value): self
     {
-        $this->params[] = "$name=$value";
+        $this->params[$name] = $value;
         return $this;
     }
 
     private function getUrl(string $url): string
     {
-        $paramsString = implode('&', $this->params);
+        $paramsString = array_map(fn($key, $value) => "$key=$value", array_keys($this->params), $this->params);
+        $paramsString = implode('&', $paramsString);
         if (!str_starts_with($url, '/')) {
             $url = '/' . $url;
         }
@@ -39,7 +43,6 @@ class TmdbClient
 
     public function fetch(string $url): ResponseInterface
     {
-        $this->addParam('language', 'pl-PL');
         $absoluteUrl = $this->getUrl($url);
 
         $response = $this->client->request(
